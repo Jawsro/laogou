@@ -16,5 +16,34 @@
 
 宏任务和微任务
 答：
-宏任务：消息队列中的每个任务都是宏任务，
-微任务：每个宏任务对应都有一个微任务队列
+宏任务：消息队列中的每个任务都是宏任务。
+       包括：script(整体代码), setTimeout, setInterval, setImmediate, I/O, UI rendering。
+微任务：每个宏任务对应都有一个微任务队列。
+       包括：Promises, Object.observe, MutationObserver
+执行顺序：先执行同步代码，遇到异步宏任务则将异步宏任务放入宏任务队列中，
+        遇到异步微任务则将异步微任务放入微任务队列中，
+        当所有同步代码执行完毕后，再将异步微任务从队列中调入主线程执行，
+        微任务执行完毕后再将异步宏任务从队列中调入主线程执行，一直循环直至所有任务执行完毕。
+
+        同步任务——>微任务——>宏任务
+例：
+setTimeout(function(){
+	console.log('1');
+});
+new Promise(function(resolve){		    
+	console.log('2');
+	resolve();
+}).then(function(){		    
+	console.log('3');
+}); 		
+console.log('4');
+
+//  2 4 3 1
+/*
+遇到setTimout，异步宏任务，放入宏任务队列中；
+遇到new Promise，new Promise在实例化的过程中所执行的代码都是同步进行的，所以输出2；
+而Promise.then中注册的回调才是异步执行的，将其放入微任务队列中
+遇到同步任务console.log(‘4’);输出4；主线程中同步任务执行完
+从微任务队列中取出任务到主线程中，输出3，微任务队列为空
+从宏任务队列中取出任务到主线程中，输出1，宏任务队列为空，结束~
+*/
