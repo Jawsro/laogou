@@ -1,10 +1,10 @@
 {
-  "name": "scaffolding-sample",
+  "name": "scaffolding-cls",
   "version": "1.0.0",
   "description": " ",
   "main": "index.js",
   "bin": {
-    "scaffolding-sample": "cli.js"
+    "scaffolding-cls": "cli.js"
   },
   "author": "",
   "license": "MIT",

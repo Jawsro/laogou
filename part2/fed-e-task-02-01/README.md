@@ -44,3 +44,27 @@
 - 提交一个项目说明文档，要求思路流程清晰。
 - 或者简单录制一个小视频介绍一下实现思路，并演示一下相关功能。
 - 说明文档和代码统一提交至作业仓库。
+#gulp-demo
+npm init 项目初始化
+
+npm i gulp --save-dev 安装
+
+npm i gulp-sass node-sass 安装gulp-sass依赖
+
+npm i gulp-babel @babel/core @babel/preset-env --save-dev  //js的转换插件
+
+npm i gulp-imagemin --save-dev //image转换插件
+
+npm i del --save-dev //文件清除
+
+npm i gulp-load-plugins --save-dev //自动加载插件，减少require的引入
+
+npm i browser-sync --save-dev 启动一个服务器
+
+npm i gulp-swig --save-dev //编译html文件
+
+npm i gulp-useref --save-dev  //文件引用处理
+
+npm i gulp-htmlmin gulp-uglify gulp-clean-css --save-dev //html js css 文件压缩插件
+
+npm i gulp-if --save-dev //判断文件类型
